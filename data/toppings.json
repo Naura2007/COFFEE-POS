@@ -1,27 +1,42 @@
 [
   {
     "id": "1",
-    "name": "Chocolate",
+    "name": "Chocolate sprinkles (15g)",
     "price": 5000
   },
   {
     "id": "2",
-    "name": "Caramel",
+    "name": "Caramel syrup (30ml)",
     "price": 5000
   },
   {
     "id": "3",
-    "name": "Whipped Cream",
+    "name": "Whipped Cream (20ml)",
     "price": 4000
   },
   {
     "id": "4",
-    "name": "Boba",
+    "name": "Boba (50g)",
     "price": 4000
   },
   {
     "id": "5",
-    "name": "Regal",
+    "name": "Regal crumbles (45g)",
     "price": 3000
+  },
+  {
+    "id": "6",
+    "name": "Cheese foam (20ml)",
+    "price": 5000
+  },
+  {
+    "id": "7",
+    "name": "Popping bubble (30g)",
+    "price": 4500
+  },
+  {
+    "id": "8",
+    "name": "Hershey's syrup (25ml)",
+    "price": 6000
   }
 ]

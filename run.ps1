@@ -1,7 +1,7 @@
 # run.ps1 - Compile & Run Coffee POS
 
 # Pindah ke folder project (sesuaikan jika perlu)
-cd "D:\Semester 3\PBO\COFFEE-POS"
+cd "D:\Downloads\COFFEE-POS"
 
 # Buat folder bin jika belum ada
 if (-not (Test-Path bin)) { mkdir bin }

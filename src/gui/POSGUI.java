@@ -1,13 +1,12 @@
 package gui;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import model.*;
-import util.JsonDB;
 import service.MenuService;
 import service.ToppingService;
 
@@ -18,7 +17,8 @@ public class POSGUI extends JFrame {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private JComboBox<MenuItemModel> cbMenu;
-    private JComboBox<Object> cbTopping; // Bisa null / "Tidak Ada"
+    private JPanel panelToppings; // Bisa null / "Tidak Ada" ataupun multi
+    private List<JCheckBox> toppingCheckboxes = new ArrayList<>();
     private JSpinner spQty;
     private JLabel lblTotal;
     private DefaultTableModel orderTableModel;
@@ -39,15 +39,61 @@ public class POSGUI extends JFrame {
     private void buildUI() {
         JPanel panelTop = new JPanel(new FlowLayout());
 
+        // Create JComboBox with custom renderer to show price
         cbMenu = new JComboBox<>(menus.toArray(new MenuItemModel[0]));
-        cbTopping = new JComboBox<>();
-        cbTopping.addItem("Tidak Ada"); // Default
-        for(Topping t : toppings) cbTopping.addItem(t);
+        
+        // Set custom renderer to display name and price
+        cbMenu.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value,
+                    int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                
+                if (value instanceof MenuItemModel) {
+                    MenuItemModel menu = (MenuItemModel) value;
+                    setText(menu.getName() + " - Rp" + menu.getPrice());
+                }
+                return this;
+            }
+        });
+        
+        // === DROPDOWN PANEL FOR TOPPINGS ===
+        JPanel dropdownWrapper = new JPanel(new BorderLayout());
+        JButton btnDropdown = new JButton("Pilih Topping ▼");
+
+        panelToppings = new JPanel();
+        panelToppings.setLayout(new BoxLayout(panelToppings, BoxLayout.Y_AXIS));
+
+        for (Topping t : toppings) {
+            JCheckBox cb = new JCheckBox(t.getName() + " (+" + t.getPrice() + ")");
+            toppingCheckboxes.add(cb);
+            panelToppings.add(cb);
+            panelToppings.add(Box.createRigidArea(new Dimension(0, 2)));
+        }
+
+        JScrollPane spToppings = new JScrollPane(panelToppings);
+        spToppings.setPreferredSize(new Dimension(200, 150));
+        spToppings.setVisible(false);
+
+        btnDropdown.addActionListener(e -> {
+            boolean visible = !spToppings.isVisible();
+            spToppings.setVisible(visible);
+            btnDropdown.setText(visible ? "Pilih Topping ▲" : "Pilih Topping ▼");
+            
+            dropdownWrapper.revalidate();
+            dropdownWrapper.repaint();
+        });
+
+        dropdownWrapper.add(btnDropdown, BorderLayout.NORTH);
+        dropdownWrapper.add(spToppings, BorderLayout.CENTER);
+
+        dropdownWrapper.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
         spQty = new JSpinner(new SpinnerNumberModel(1,1,100,1));
         JButton btnAdd = new JButton("Tambah ke Order");
 
         panelTop.add(new JLabel("Menu:")); panelTop.add(cbMenu);
-        panelTop.add(new JLabel("Topping:")); panelTop.add(cbTopping);
+        panelTop.add(new JLabel("Topping(s):")); panelTop.add(dropdownWrapper);
         panelTop.add(new JLabel("Qty:")); panelTop.add(spQty);
         panelTop.add(btnAdd);
 
@@ -73,37 +119,64 @@ public class POSGUI extends JFrame {
         refreshOrderTable();
         updateTotal();
     }
-
     private void addOrderItem() {
         MenuItemModel mi = (MenuItemModel) cbMenu.getSelectedItem();
-        Object toppingObj = cbTopping.getSelectedItem();
-        Topping tp = (toppingObj instanceof Topping) ? (Topping) toppingObj : null;
+        List<Topping> selectedToppings = new ArrayList<>();
+        for (int i = 0; i < toppingCheckboxes.size(); i++) {
+            if (toppingCheckboxes.get(i).isSelected()) {
+                selectedToppings.add(toppings.get(i));
+            }
+        }
+
         int qty = (int) spQty.getValue();
         if(mi == null) return;
 
         int menuId = Integer.parseInt(mi.getId().replaceAll("\\D",""));
-        int price = mi.getPrice() + (tp != null ? tp.getPrice() : 0);
+        OrderItem oi = new OrderItem(
+            menuId,
+            mi.getName(),
+            mi.getPrice(),
+            qty,
+            new ArrayList<>(selectedToppings)
+        );
 
-        OrderItem oi = new OrderItem(menuId, mi.getName(), price, qty);
         orderItems.add(oi);
+        for (JCheckBox cb : toppingCheckboxes) cb.setSelected(false);
         refreshOrderTable();
         updateTotal();
     }
 
     private void refreshOrderTable() {
         orderTableModel.setRowCount(0);
-        for(OrderItem oi : orderItems){
-            String toppingName = "-";
-            for(Topping t : toppings){
-                if(oi.getName().equals(t.getName())) toppingName = t.getName();
-            }
+        
+        for (OrderItem oi : orderItems) {
+            // Calculate menu base subtotal (without toppings)
+            int menuBaseSubtotal = oi.getPrice() * oi.getQty();
+            
+            // Add main menu item row
             orderTableModel.addRow(new Object[]{
-                oi.getName(),
-                toppingName,
+                oi.getName() + " x" + oi.getQty(),
+                "", // Empty for topping column
                 oi.getQty(),
                 oi.getPrice(),
-                oi.subtotal()
+                menuBaseSubtotal  // Only menu price * qty
             });
+            
+            // Add topping rows as child rows
+            if (oi.getToppings() != null && !oi.getToppings().isEmpty()) {
+                for (Topping topping : oi.getToppings()) {
+                    orderTableModel.addRow(new Object[]{
+                        "    └─ " + topping.getName()
+                    });
+                }
+            }
+            
+            orderTableModel.addRow(new Object[]{"", "", "", "", ""});
+        }
+        
+        if (orderTableModel.getRowCount() > 0 && 
+            orderTableModel.getValueAt(orderTableModel.getRowCount() - 1, 0) == "") {
+            orderTableModel.removeRow(orderTableModel.getRowCount() - 1);
         }
     }
 
@@ -124,16 +197,37 @@ public class POSGUI extends JFrame {
         if(method == null) return;
 
         StringBuilder receipt = new StringBuilder();
-        receipt.append("===== STRUK COFFEE POS =====\n");
+        receipt.append("======================\n");
+        receipt.append("        STRUK COFFEE POS        \n");
+        receipt.append("======================\n");
         receipt.append("Tanggal: ").append(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())).append("\n");
         receipt.append("Metode Bayar: ").append(method).append("\n");
-        receipt.append("------------------------------\n");
-        for(OrderItem oi : orderItems){
-            receipt.append(String.format("%s x%d = %d\n", oi.getName(), oi.getQty(), oi.subtotal()));
+        receipt.append("---------------------------\n");
+        
+        int grandTotal = 0;
+        
+        for(OrderItem oi : orderItems){          
+            receipt.append(String.format("%s x%d\n", oi.getName(), oi.getQty()));
+            
+            if(oi.getToppings() != null && !oi.getToppings().isEmpty()) {
+                for(Topping topping : oi.getToppings()) {
+                    receipt.append(String.format("    • %-16s\n", 
+                        topping.getName()));
+                }
+            }
+
+            receipt.append(String.format("  %-20s Rp %,d\n", 
+                "Subtotal:", oi.subtotal()));
+            receipt.append("\n");
+            
+            grandTotal += oi.subtotal();
         }
-        receipt.append("------------------------------\n");
-        receipt.append(lblTotal.getText()).append("\n");
-        receipt.append("===== TERIMA KASIH =====\n");
+        
+        receipt.append("---------------------------\n");
+        receipt.append(String.format("%-20s Rp %,d\n", "TOTAL:", grandTotal));
+        receipt.append("---------------------------\n");
+        receipt.append("        TERIMA KASIH            \n");
+        receipt.append("======================\n");
 
         JOptionPane.showMessageDialog(this, receipt.toString(), "Struk", JOptionPane.INFORMATION_MESSAGE);
 

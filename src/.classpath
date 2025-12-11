@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <!-- Source folder -->
+    <classpathentry kind="src" path="src"/>
+
+    <!-- Gson -->
+    <classpathentry kind="lib" path="lib/gson-2.10.1.jar"/>
+
+    <!-- FlatLaf -->
+    <classpathentry kind="lib" path="lib/flatlaf-3.7.jar"/>
+
+    <!-- Output folder -->
+    <classpathentry kind="output" path="bin"/>
+</classpath>
