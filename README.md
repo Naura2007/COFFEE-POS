@@ -1,6 +1,3 @@
-# Aplikasi E-commerce untuk Coffee Shop
-
-LINK:
 | Nomor | Nama | NRP |
 | --- | --- | --- |
 | 1. | Yasmina Fitri Azizah | 5025241039 |
@@ -216,36 +213,55 @@ Lapisan ini berfungsi sebagai perantara antara Antarmuka Pengguna (GUI) dan Lapi
 ## Gambar Aplikasi 
 1. `Admin Side`
    - Tambah Menu
-     
-   <img width="2877" height="1799" alt="Screenshot 2025-12-12 220622" src="https://github.com/user-attachments/assets/69eebabb-2385-4dc4-a829-e38a5b03dc70" />
-   
-   **a. Menambakan Menu**
-   <img width="2875" height="1799" alt="Screenshot 2025-12-12 220648" src="https://github.com/user-attachments/assets/9f0f3d4d-c513-4af0-908d-61879b66f2e5" />
-   
-   **b. Menambahkan Harga Menu Baru**
-   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220659" src="https://github.com/user-attachments/assets/ec05c66a-89a2-4279-8e27-68ea24d02de1" />
-   
-   **c. Hasil Menambahkan Menu Baru**
-   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220705" src="https://github.com/user-attachments/assets/3baed404-471f-4c01-886a-63f4254d8357" />
-
+     <img width="2877" height="1799" alt="Screenshot 2025-12-12 220622" src="https://github.com/user-attachments/assets/69eebabb-2385-4dc4-a829-e38a5b03dc70" />
+     **a. Menambakan Menu**
+     <img width="2875" height="1799" alt="Screenshot 2025-12-12 220648" src="https://github.com/user-attachments/assets/9f0f3d4d-c513-4af0-908d-61879b66f2e5" />
+     **b. Menambahkan Harga Menu Baru**
+     <img width="2879" height="1799" alt="Screenshot 2025-12-12 220659" src="https://github.com/user-attachments/assets/ec05c66a-89a2-4279-8e27-68ea24d02de1" />
+     **c. Hasil Menambahkan Menu Baru**
+     <img width="2879" height="1799" alt="Screenshot 2025-12-12 220705" src="https://github.com/user-attachments/assets/3baed404-471f-4c01-886a-63f4254d8357" />
    - Edit Menu
-
-   **a. Sebelum Edit**
-   <img width="2873" height="1799" alt="Screenshot 2025-12-12 220719" src="https://github.com/user-attachments/assets/262e5ac3-a9ef-4068-ad16-a11d566d74b2" />
-   
-   **b. Edit Harga**
-   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220733" src="https://github.com/user-attachments/assets/001a66e8-7fb0-49df-b0b4-10d99edb6fae" />
-
-   **c. Hasil Setelah Edit Harga**
-   <img width="2860" height="1799" alt="Screenshot 2025-12-12 220739" src="https://github.com/user-attachments/assets/37a3f334-3ec6-42b7-b906-82c50bee953a" />
-
+     <br>**a. Sebelum Edit**
+     <img width="2873" height="1799" alt="Screenshot 2025-12-12 220719" src="https://github.com/user-attachments/assets/262e5ac3-a9ef-4068-ad16-a11d566d74b2" />
+     **b. Edit Harga**
+     <img width="2879" height="1799" alt="Screenshot 2025-12-12 220733" src="https://github.com/user-attachments/assets/001a66e8-7fb0-49df-b0b4-10d99edb6fae" />
+     **c. Hasil Setelah Edit Harga**
+     <img width="2860" height="1799" alt="Screenshot 2025-12-12 220739" src="https://github.com/user-attachments/assets/37a3f334-3ec6-42b7-b906-82c50bee953a" />
    - Hapus Menu
-     
-   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220829" src="https://github.com/user-attachments/assets/5db23bef-0c76-4609-95c8-274459a89088" />
-   
-   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220835" src="https://github.com/user-attachments/assets/3a384678-2779-4737-8fe1-581739980c2d" />
+     <img width="2879" height="1799" alt="Screenshot 2025-12-12 220829" src="https://github.com/user-attachments/assets/5db23bef-0c76-4609-95c8-274459a89088" />
+     <img width="2879" height="1799" alt="Screenshot 2025-12-12 220835" src="https://github.com/user-attachments/assets/3a384678-2779-4737-8fe1-581739980c2d" />
 
-
+2. `Cashier Side`
+   - Home
+     <br>**a. Light**
+     <img width="1257" height="891" alt="L_Home" src="https://github.com/user-attachments/assets/7c745be2-d708-48ef-8d80-96bf25209f25" />
+     **b. Dark**
+     <img width="1257" height="891" alt="D_Home" src="https://github.com/user-attachments/assets/c6960c61-763b-47d0-9560-0cd33e395cc8" />
+   - Select Menu
+     <br>**a. Light**
+     <img width="1257" height="891" alt="L_Select" src="https://github.com/user-attachments/assets/ca8b109a-1a80-4396-bc28-02352e127006" />
+     **b. Dark**
+     <img width="1257" height="891" alt="D_Select" src="https://github.com/user-attachments/assets/73d99433-2281-4e49-acd9-6e4c29dde294" />
+   - Select Topping(s)
+     <br>**a. Light**
+     <img width="1257" height="891" alt="L_Check" src="https://github.com/user-attachments/assets/996eaa57-c3fa-4f3d-acb4-99b7b8f3856c" />
+     **b. Dark**
+     <img width="1257" height="891" alt="D_Check" src="https://github.com/user-attachments/assets/e3286eb9-945e-4419-be0e-f8170263a0bd" />
+   - Item added
+     <br>**a. Light**
+     <img width="1257" height="891" alt="L_Added" src="https://github.com/user-attachments/assets/c967a776-7313-4e87-9900-271bf3d25223" />
+     **b. Dark**
+     <img width="1257" height="891" alt="D_Added" src="https://github.com/user-attachments/assets/d1f4ebd6-a1b3-47f1-9fb7-1cd5c9b873ca" />
+   - Payment
+     <br>**a. Light**
+     <img width="1258" height="893" alt="L_Pay" src="https://github.com/user-attachments/assets/9bb5f6d8-04d6-482b-8bd2-5db96f32afe2" />
+     **b. Dark**
+     <img width="1261" height="894" alt="D_Pay" src="https://github.com/user-attachments/assets/88aa264d-a132-478e-a9f5-66aa1a6c0acc" />     
+   - Receipt
+     <br>**a. Light**<br>
+     <img width="396" height="924" alt="L_Receipt" src="https://github.com/user-attachments/assets/825952e8-449d-4bf0-94da-83680b53e778" />
+     <br>**b. Dark**<br>
+     <img width="396" height="924" alt="D_Receipt" src="https://github.com/user-attachments/assets/da73fdb7-1ae5-486f-86cd-9cefc0772a4a" />
 
 ## Dokumentasi
 1. Judul
