@@ -73,92 +73,92 @@ Kelas Main adalah entry point atau titik awal eksekusi dari seluruh aplikasi E-c
 ## JSONDB.java
 Kelas ini mengabstraksi detail teknis penyimpanan file, memungkinkan Service Layer (seperti MenuService atau UserService) untuk berinteraksi dengan data seolah-olah data tersebut adalah daftar objek (List<T>) tanpa perlu khawatir tentang parsing atau format file.
 
-1. public static <T> List<T> load(String path, Class<T> clazz)
+1. `public static <T> List<T> load(String path, Class<T> clazz)`
 
    Method ini berfungsi untuk membaca data dari file JSON dan mengembalikannya dalam bentuk List objek Java.
 
-2. public static void save(String path, List<?> data)
+2. `public static void save(String path, List<?> data)`
 
     Method ini berfungsi untuk menyimpan List objek Java ke dalam file JSON.
 
 ## Discount.java
 
-public Discount(String code, int percent)  
+1. `public Discount(String code, int percent)`  
     Metode ini digunakan untuk menginisialisasi objek Discount baru. Ia menerima dua parameter, yaitu kode diskon (code) dan nilai persentase potongan (percent), dan menyimpannya ke dalam atribut instance yang sesuai.
 
-public String getCode()    
+2. `public String getCode()`    
     Metode ini berfungsi untuk mengembalikan nilai kode diskon (code) yang disimpan dalam objek ini. Kode ini biasanya digunakan oleh Service Layer untuk memvalidasi dan mengaktifkan diskon
 
-public int getPercent()    
+3. `public int getPercent()`    
     Metode ini berfungsi untuk mengembalikan nilai persentase potongan (percent) dalam bentuk bilangan bulat.
 
 ## Membership.java
 
 Kelas ini mendefinisikan struktur data yang diperlukan untuk melacak kepemilikan dan status poin dari setiap anggota.
 
-public Membership(String username, int points)    
+1. `public Membership(String username, int points)`    
     Metode ini digunakan untuk menginisialisasi objek Membership baru. Ia menerima Username (identifikasi anggota) dan jumlah Poin Awal, dan menyimpannya ke dalam atribut instance yang sesuai.
 
-public String getUsername()    
+2. `public String getUsername()`    
     Metode ini berfungsi untuk mengembalikan Username anggota yang terkait dengan akun ini. Username ini biasanya digunakan sebagai kunci unik untuk pencarian data anggota
 
-public int getPoints()    
+3. `public int getPoints()`    
     Metode ini berfungsi untuk mengembalikan jumlah Poin Loyalitas saat ini yang dimiliki oleh anggota. Nilai ini akan digunakan dalam logika penukaran atau tampilan saldo.
 
-public void setPoints(int points)    
+4. `public void setPoints(int points)`    
     Metode ini berfungsi untuk memperbarui jumlah Poin Loyalitas anggota. Metode ini dipanggil setelah transaksi selesai, baik untuk menambahkan poin baru atau mengurangi poin karena penukaran.
 
 ## MenuitemModel.java
 
 Kelas ini mendefinisikan struktur data fundamental untuk setiap produk utama yang terdaftar dalam katalog toko. Data ini dimuat dari file JSON dan digunakan di seluruh aplikasi, terutama oleh AdminGUI untuk manajemen katalog dan POSGUI untuk transaksi.
 
-public MenuItemModel(String id, String name, int price)    
+1. `public MenuItemModel(String id, String name, int price)`    
     Metode ini digunakan untuk menginisialisasi objek MenuItemModel baru. Ia menerima ID unik, Nama produk, dan Harga dasar produk, dan menetapkan nilainya ke atribut instance.
 
-public String getId()    
+2. `public String getId()`    
     Metode ini mengembalikan ID unik item menu. ID ini digunakan oleh sistem internal untuk identifikasi data.
 
-public String getName()    
+3. `public String getName()`    
     Metode ini mengembalikan Nama item menu. Nama ini digunakan untuk tampilan di tabel (AdminGUI) dan daftar pilihan (POSGUI).
 
-public int getPrice()    
+4. `public int getPrice()`    
     Metode ini mengembalikan Harga dasar item menu. Harga ini merupakan komponen utama dalam perhitungan subtotal pesanan.
 
-public String toString()  
+5. `public String toString()`  
     Metode ini di-override untuk mengembalikan Nama item menu (name). Ini penting karena ketika objek ini digunakan dalam komponen GUI seperti JComboBox (seperti di POSGUI), JComboBox akan memanggil metode ini untuk menentukan teks apa yang akan ditampilkan pada daftar pilihan.
 
 ## OrderItem.java
 
 Kelas ini adalah model komposit yang menggabungkan informasi dari MenuItemModel dan Topping, menyimpan data dan menyediakan logika perhitungan harga untuk item tersebut.
 
-public OrderItem(...)  
+1. `public OrderItem(...)`  
     Metode ini menginisialisasi objek pesanan. Menerima ID menu, nama, harga dasar (basePrice), kuantitas (qty), dan daftar topping yang dipilih (List<Topping>).
 
-public int getMenuId()	  
+2. `public int getMenuId()`	  
     Mengembalikan ID menu dari item yang dipesan.
 
-public String getName()   
+3. `public String getName()`   
     Mengembalikan nama menu dari item yang dipesan.
 
-public int getQty()	  
+4. `public int getQty()`	  
     Mengembalikan kuantitas item yang dipesan.
 
-public List<Topping> getToppings()	  
+5. `public List<Topping> getToppings()`	  
     Mengembalikan daftar objek Topping yang ditambahkan pada pesanan ini.
 
-public int getBasePrice()	  
+6. `public int getBasePrice()`	  
     Mengembalikan harga dasar menu sebelum ditambahkan topping.
 
-public void setQty(int qty)
+7. `public void setQty(int qty)`
     Memungkinkan perubahan kuantitas item pesanan setelah objek dibuat (misalnya, jika kasir ingin menambah/mengurangi jumlah).
 
-public int getPrice()
+8. `public int getPrice()`
     Menghitung Harga Satuan: Metode ini menghitung harga total untuk satu unit item pesanan. Hasilnya adalah penjumlahan dari basePrice dan total harga semua topping yang terkait.
 
-public int subtotal()
+9. `public int subtotal()`
     Menghitung Subtotal Item: Metode ini menghitung total biaya untuk baris pesanan ini. Hasilnya adalah getPrice() (Harga Satuan) dikalikan dengan kuantitas (qty).
 
-public String toppingNames()	
+10. `public String toppingNames()`	
     Metode utilitas untuk memformat daftar Topping menjadi satu string yang dipisahkan koma (e.g., "Extra Shot, Syrup Vanilla"). Digunakan untuk menampilkan detail topping pada tabel pesanan atau struk.
 
 ## Salerecord.java
@@ -167,46 +167,46 @@ Kelas ini mendefinisikan struktur data untuk menyimpan seluruh detail yang diper
 ## Topping.java
 Kelas ini mendefinisikan struktur data fundamental untuk setiap topping yang terdaftar dalam katalog toko. Data ini dimuat dari file JSON dan digunakan oleh AdminGUI untuk manajemen dan POSGUI untuk perhitungan transaksi.
 
-public Topping(String id, String name, int price)	
+1. `public Topping(String id, String name, int price)`	
 Metode ini digunakan untuk menginisialisasi objek Topping baru. Ia menerima ID unik, Nama topping, dan Harga tambahan, dan menetapkan nilainya ke atribut instance.
 
-public String getId()	
+2. `public String getId()`	
 Metode ini mengembalikan ID unik topping. ID ini digunakan oleh sistem internal untuk identifikasi data.
 
-public String getName()	  
+3. `public String getName()`	  
 Metode ini mengembalikan Nama topping. Nama ini digunakan untuk tampilan di checkbox di POSGUI atau tabel di AdminGUI.
 
-public int getPrice()	
+4. `public int getPrice()`	
 Metode ini mengembalikan Harga tambahan dari topping tersebut. Harga ini adalah komponen kunci yang ditambahkan ke harga dasar menu saat menghitung total pesanan.
 
-public String toString()	
+5. `public String toString()`	
 Metode ini di-override untuk mengembalikan gabungan Nama dan Harga topping (misalnya, "Extra Shot - Rp 5000"). Ini berguna jika objek ini ditempatkan langsung ke dalam daftar atau komponen GUI tertentu yang memerlukan representasi string deskriptif.
 
 ## User.java
 Kelas ini mendefinisikan struktur data minimal yang diperlukan untuk proses otentikasi. Data ini dimuat oleh UserService dan digunakan oleh LoginGUI untuk memverifikasi identitas dan menentukan hak akses pengguna.
 
-public User(String username, String password, String role)	  
+1. `public User(String username, String password, String role)`	  
 Metode ini digunakan untuk menginisialisasi objek User baru. Ia menerima Username, Password, dan Role (hak akses) pengguna, dan menetapkan nilainya ke atribut instance.
 
-public String getUsername()	  
+2. `public String getUsername()`    
 Metode ini mengembalikan Username pengguna. Digunakan sebagai kunci untuk proses otentikasi.
 
-public String getPassword()	  
+3. `public String getPassword()`	  
 Metode ini mengembalikan Password pengguna. Digunakan oleh UserService.authenticate() untuk membandingkan dengan password yang dimasukkan saat login.
 
-public String getRole()	  
+4. `public String getRole()`	  
 Metode ini mengembalikan Role pengguna (misalnya, "admin" atau "cashier"). Role ini menentukan interface mana (AdminGUI atau POSGUI) yang harus ditampilkan setelah login berhasil.
 
 ## Voucher.java
 Kelas ini mendefinisikan struktur data untuk menyimpan informasi penting tentang voucher, yaitu kode unik yang mengaktifkannya dan nilai nominal potongan yang akan diberikan. Data ini digunakan dalam logika pembayaran di POSGUI untuk mengurangi total tagihan.
 
-public Voucher(String code, int amount)	  
+1. `public Voucher(String code, int amount)`	  
 Metode ini digunakan untuk menginisialisasi objek Voucher baru. Ia menerima Kode voucher (code) dan nilai Nominal Potongan (amount), dan menyimpannya ke dalam atribut instance.
 
-public String getCode()	  
+2. `public String getCode()`	  
 Metode ini berfungsi untuk mengembalikan Kode voucher. Kode ini digunakan oleh sistem (misalnya, Service Layer) untuk memvalidasi keberadaan voucher dan mengaplikasikannya ke dalam transaksi.
 
-public int getAmount()  
+3. `public int getAmount()`  
 Metode ini berfungsi untuk mengembalikan nilai Nominal Potongan harga dalam bentuk bilangan bulat (misalnya, Rp 10.000). Nilai ini akan dikurangkan dari Grand Total pesanan.
 
 ## Services
