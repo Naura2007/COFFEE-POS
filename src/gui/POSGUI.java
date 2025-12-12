@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import model.*;
 import service.MenuService;
 import service.ToppingService;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 public class POSGUI extends JFrame {
 
@@ -36,13 +38,28 @@ public class POSGUI extends JFrame {
         buildUI();
     }
 
+    private void toggleDarkMode(boolean dark) {
+        try {
+            if (dark) {
+                FlatDarkLaf.setup();
+            } else {
+                FlatLightLaf.setup();
+            }
+
+            SwingUtilities.updateComponentTreeUI(this);
+            this.pack();
+            this.setSize(850, 600);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void buildUI() {
         JPanel panelTop = new JPanel(new FlowLayout());
 
-        // Create JComboBox with custom renderer to show price
         cbMenu = new JComboBox<>(menus.toArray(new MenuItemModel[0]));
         
-        // Set custom renderer to display name and price
         cbMenu.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value,
@@ -106,6 +123,15 @@ public class POSGUI extends JFrame {
         add(new JScrollPane(orderTable), BorderLayout.CENTER);
 
         JPanel panelBottom = new JPanel(new FlowLayout());
+
+        JToggleButton btnDark = new JToggleButton("Dark Mode");
+        btnDark.addActionListener(e -> {
+            boolean dark = btnDark.isSelected();
+            toggleDarkMode(dark);
+            btnDark.setText(dark ? "Light Mode" : "Dark Mode");
+        });
+        panelBottom.add(btnDark);
+
         lblTotal = new JLabel("Total: 0");
         JButton btnPay = new JButton("Bayar");
         panelBottom.add(lblTotal);
@@ -119,6 +145,7 @@ public class POSGUI extends JFrame {
         refreshOrderTable();
         updateTotal();
     }
+
     private void addOrderItem() {
         MenuItemModel mi = (MenuItemModel) cbMenu.getSelectedItem();
         List<Topping> selectedToppings = new ArrayList<>();
@@ -150,19 +177,16 @@ public class POSGUI extends JFrame {
         orderTableModel.setRowCount(0);
         
         for (OrderItem oi : orderItems) {
-            // Calculate menu base subtotal (without toppings)
             int menuBaseSubtotal = oi.getPrice() * oi.getQty();
             
-            // Add main menu item row
             orderTableModel.addRow(new Object[]{
                 oi.getName() + " x" + oi.getQty(),
-                "", // Empty for topping column
+                "",
                 oi.getQty(),
                 oi.getPrice(),
-                menuBaseSubtotal  // Only menu price * qty
+                menuBaseSubtotal
             });
             
-            // Add topping rows as child rows
             if (oi.getToppings() != null && !oi.getToppings().isEmpty()) {
                 for (Topping topping : oi.getToppings()) {
                     orderTableModel.addRow(new Object[]{
