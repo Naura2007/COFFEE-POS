@@ -3,10 +3,11 @@
 LINK:
 | Nomor | Nama | NRP |
 | --- | --- | --- |
-| 1. | . | . |
-| 2. | . | . |
-| 3. | . | . |
+| 1. | Yasmina Fitri Azizah | 5025241039 |
+| 2. | Naura Rossa Azalia | 5025241042 |
+| 3. | Farras Abdurrazaq Arrasyid | 5025241091 |
 
+## Deskripsi
 Aplikasi E-commerce untuk Coffee Shop adalah aplikasi yang mengimplementasikan Java sebagai bahasa pemrograman utamanya, Graphical User Interface (GUI) untuk operasional yang mudah, serta menggunakan format JSON sebagai database yang ringan.
 
 ## Rancangan Kode
