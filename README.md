@@ -14,10 +14,8 @@ Aplikasi E-commerce untuk Coffee Shop adalah aplikasi yang mengimplementasikan J
 Kelas AdminGUI adalah komponen GUI utama dalam aplikasi E-commerce untuk Coffee Shop. Kelas ini berfungsi sebagai Panel Administrasi yang memungkinkan manajer atau administrator melakukan manajemen data produk. Mengimplementasikan prinsip CRUD (Create, Read, Update, Delete) terhadap dua data utama: Menu (MenuItemModel) dan Topping (Topping).
 
   1. public AdminGUI()
-  
   Metode ini pertama kali dieksekusi saat objek AdminGUI dibuat. Ini mengatur properti dasar jendela (JFrame) seperti judul, ukuran, dan layout (BorderLayout). Poin pentingnya adalah memuat data awal: menuItems dan toppingItems diisi dengan data yang diambil dari file JSON melalui MenuService.loadAll() dan ToppingService.loadAll(). Akhirnya, ia memanggil buildUI() untuk merakit tampilan.
   2. private void buildUI()
-  
   Metode ini membuat JTabbedPane untuk menampung panel Menu dan Topping. Untuk setiap panel, ia membuat DefaultTableModel (untuk mengatur kolom tabel), JTable (untuk menampilkan data), tombol-tombol CRUD, dan memasang event listener pada tombol-tombol tersebut (misalnya, btnAddMenu.addActionListener(e -> addMenu())). Metode ini diakhiri dengan mengisi data awal ke tabel melalui refreshMenuTable() dan refreshToppingTable().
   3. private void addMenu()
   
