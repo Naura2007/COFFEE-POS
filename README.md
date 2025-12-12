@@ -206,7 +206,7 @@ Metode ini digunakan untuk menginisialisasi objek Voucher baru. Ia menerima Kode
 public String getCode()	  
 Metode ini berfungsi untuk mengembalikan Kode voucher. Kode ini digunakan oleh sistem (misalnya, Service Layer) untuk memvalidasi keberadaan voucher dan mengaplikasikannya ke dalam transaksi.
 
-public int getAmount()	 
+public int getAmount()  
 Metode ini berfungsi untuk mengembalikan nilai Nominal Potongan harga dalam bentuk bilangan bulat (misalnya, Rp 10.000). Nilai ini akan dikurangkan dari Grand Total pesanan.
 
 ## Services
