@@ -213,6 +213,40 @@ Metode ini berfungsi untuk mengembalikan nilai Nominal Potongan harga dalam bent
 Dalam arsitektur Point of Sale (POS) dan E-commerce berbasis Java, folder service merepresentasikan Lapisan Logika Bisnis (Business Logic Layer).
 Lapisan ini berfungsi sebagai perantara antara Antarmuka Pengguna (GUI) dan Lapisan Penyimpanan Data (JsonDB atau Persistence Layer).
 
+## Gambar Aplikasi 
+1. `Admin Side`
+   - Tambah Menu
+     
+   <img width="2877" height="1799" alt="Screenshot 2025-12-12 220622" src="https://github.com/user-attachments/assets/69eebabb-2385-4dc4-a829-e38a5b03dc70" />
+   
+   **a. Menambakan Menu**
+   <img width="2875" height="1799" alt="Screenshot 2025-12-12 220648" src="https://github.com/user-attachments/assets/9f0f3d4d-c513-4af0-908d-61879b66f2e5" />
+   
+   **b. Menambahkan Harga Menu Baru**
+   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220659" src="https://github.com/user-attachments/assets/ec05c66a-89a2-4279-8e27-68ea24d02de1" />
+   
+   **c. Hasil Menambahkan Menu Baru**
+   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220705" src="https://github.com/user-attachments/assets/3baed404-471f-4c01-886a-63f4254d8357" />
+
+   - Edit Menu
+
+   **a. Sebelum Edit**
+   <img width="2873" height="1799" alt="Screenshot 2025-12-12 220719" src="https://github.com/user-attachments/assets/262e5ac3-a9ef-4068-ad16-a11d566d74b2" />
+   
+   **b. Edit Harga**
+   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220733" src="https://github.com/user-attachments/assets/001a66e8-7fb0-49df-b0b4-10d99edb6fae" />
+
+   **c. Hasil Setelah Edit Harga**
+   <img width="2860" height="1799" alt="Screenshot 2025-12-12 220739" src="https://github.com/user-attachments/assets/37a3f334-3ec6-42b7-b906-82c50bee953a" />
+
+   - Hapus Menu
+     
+   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220829" src="https://github.com/user-attachments/assets/5db23bef-0c76-4609-95c8-274459a89088" />
+   
+   <img width="2879" height="1799" alt="Screenshot 2025-12-12 220835" src="https://github.com/user-attachments/assets/3a384678-2779-4737-8fe1-581739980c2d" />
+
+
+
 ## Dokumentasi
 1. Judul
 2. deskripsi
