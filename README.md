@@ -45,13 +45,9 @@ Kelas ini mengumpulkan kredensial (Username dan Password) dari pengguna, memvali
 
 ## POSGUI
 Kelas ini memungkinkan kasir untuk membuat dan memproses pesanan pelanggan secara real-time. Fungsionalitas utamanya meliputi:
-
-    Memuat daftar Menu dan Topping yang telah dikelola oleh AdminGUI.
-
-    Menerima input menu, topping, dan kuantitas dari kasir.
-
-    Menghitung subtotal dan grand total pesanan secara dinamis.
-
+    Memuat daftar Menu dan Topping yang telah dikelola oleh AdminGUI,
+    Menerima input menu, topping, dan kuantitas dari kasir,
+    Menghitung subtotal dan grand total pesanan secara dinamis,
     Menyelesaikan transaksi dan menghasilkan struk pembayaran.
 
 1. public POSGUI()
@@ -85,6 +81,15 @@ Kelas ini mengabstraksi detail teknis penyimpanan file, memungkinkan Service Lay
     Method ini berfungsi untuk menyimpan List objek Java ke dalam file JSON.
 
 ## Discount.java
+
+public Discount(String code, int percent)
+Metode ini digunakan untuk menginisialisasi objek Discount baru. Ia menerima dua parameter, yaitu kode diskon (code) dan nilai persentase potongan (percent), dan menyimpannya ke dalam atribut instance yang sesuai.
+
+public String getCode()
+Metode ini berfungsi untuk mengembalikan nilai kode diskon (code) yang disimpan dalam objek ini. Kode ini biasanya digunakan oleh Service Layer untuk memvalidasi dan mengaktifkan diskon
+
+public int getPercent()
+Metode ini berfungsi untuk mengembalikan nilai persentase potongan (percent) dalam bentuk bilangan bulat.
 
 ## Dokumentasi
 1. Judul
