@@ -83,70 +83,70 @@ Kelas ini mengabstraksi detail teknis penyimpanan file, memungkinkan Service Lay
 
 ## Discount.java
 
-public Discount(String code, int percent)
+public Discount(String code, int percent)  
     Metode ini digunakan untuk menginisialisasi objek Discount baru. Ia menerima dua parameter, yaitu kode diskon (code) dan nilai persentase potongan (percent), dan menyimpannya ke dalam atribut instance yang sesuai.
 
-public String getCode()
+public String getCode()    
     Metode ini berfungsi untuk mengembalikan nilai kode diskon (code) yang disimpan dalam objek ini. Kode ini biasanya digunakan oleh Service Layer untuk memvalidasi dan mengaktifkan diskon
 
-public int getPercent()
+public int getPercent()    
     Metode ini berfungsi untuk mengembalikan nilai persentase potongan (percent) dalam bentuk bilangan bulat.
 
 ## Membership.java
 
 Kelas ini mendefinisikan struktur data yang diperlukan untuk melacak kepemilikan dan status poin dari setiap anggota.
 
-public Membership(String username, int points)
+public Membership(String username, int points)    
     Metode ini digunakan untuk menginisialisasi objek Membership baru. Ia menerima Username (identifikasi anggota) dan jumlah Poin Awal, dan menyimpannya ke dalam atribut instance yang sesuai.
 
-public String getUsername()
+public String getUsername()    
     Metode ini berfungsi untuk mengembalikan Username anggota yang terkait dengan akun ini. Username ini biasanya digunakan sebagai kunci unik untuk pencarian data anggota
 
-public int getPoints()
+public int getPoints()    
     Metode ini berfungsi untuk mengembalikan jumlah Poin Loyalitas saat ini yang dimiliki oleh anggota. Nilai ini akan digunakan dalam logika penukaran atau tampilan saldo.
 
-public void setPoints(int points)
+public void setPoints(int points)    
     Metode ini berfungsi untuk memperbarui jumlah Poin Loyalitas anggota. Metode ini dipanggil setelah transaksi selesai, baik untuk menambahkan poin baru atau mengurangi poin karena penukaran.
 
 ## MenuitemModel.java
 
 Kelas ini mendefinisikan struktur data fundamental untuk setiap produk utama yang terdaftar dalam katalog toko. Data ini dimuat dari file JSON dan digunakan di seluruh aplikasi, terutama oleh AdminGUI untuk manajemen katalog dan POSGUI untuk transaksi.
 
-public MenuItemModel(String id, String name, int price)
+public MenuItemModel(String id, String name, int price)    
     Metode ini digunakan untuk menginisialisasi objek MenuItemModel baru. Ia menerima ID unik, Nama produk, dan Harga dasar produk, dan menetapkan nilainya ke atribut instance.
 
-public String getId()
+public String getId()    
     Metode ini mengembalikan ID unik item menu. ID ini digunakan oleh sistem internal untuk identifikasi data.
 
-public String getName()
+public String getName()    
     Metode ini mengembalikan Nama item menu. Nama ini digunakan untuk tampilan di tabel (AdminGUI) dan daftar pilihan (POSGUI).
 
-public int getPrice()
+public int getPrice()    
     Metode ini mengembalikan Harga dasar item menu. Harga ini merupakan komponen utama dalam perhitungan subtotal pesanan.
 
-public String toString()
+public String toString()  
     Metode ini di-override untuk mengembalikan Nama item menu (name). Ini penting karena ketika objek ini digunakan dalam komponen GUI seperti JComboBox (seperti di POSGUI), JComboBox akan memanggil metode ini untuk menentukan teks apa yang akan ditampilkan pada daftar pilihan.
 
 ## OrderItem.java
 
 Kelas ini adalah model komposit yang menggabungkan informasi dari MenuItemModel dan Topping, menyimpan data dan menyediakan logika perhitungan harga untuk item tersebut.
 
-public OrderItem(...)
+public OrderItem(...)  
     Metode ini menginisialisasi objek pesanan. Menerima ID menu, nama, harga dasar (basePrice), kuantitas (qty), dan daftar topping yang dipilih (List<Topping>).
 
-public int getMenuId()	
+public int getMenuId()	  
     Mengembalikan ID menu dari item yang dipesan.
 
-public String getName() 
+public String getName()   
     Mengembalikan nama menu dari item yang dipesan.
 
-public int getQty()	
+public int getQty()	  
     Mengembalikan kuantitas item yang dipesan.
 
-public List<Topping> getToppings()	
+public List<Topping> getToppings()	  
     Mengembalikan daftar objek Topping yang ditambahkan pada pesanan ini.
 
-public int getBasePrice()	
+public int getBasePrice()	  
     Mengembalikan harga dasar menu sebelum ditambahkan topping.
 
 public void setQty(int qty)
