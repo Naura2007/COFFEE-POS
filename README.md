@@ -40,7 +40,7 @@ Kelas AdminGUI adalah komponen GUI utama dalam aplikasi E-commerce untuk Coffee 
 ## LoginGUI
 Kelas ini mengumpulkan kredensial (Username dan Password) dari pengguna, memvalidasinya melalui lapisan layanan (UserService), dan mengarahkan alur aplikasi ke interface yang sesuai (AdminGUI untuk administrator atau POSGUI untuk kasir) berdasarkan hak akses (Role) yang berhasil diotentikasi.
 
-1. public LoginGUI()
+1. `public LoginGUI()`
 
     Metode ini adalah titik awal inisialisasi tampilan login. Pengaturan Jendela: Menetapkan properti dasar seperti judul, operasi penutupan default (EXIT_ON_CLOSE), ukuran (360x220), dan memposisikan jendela di tengah layar (setLocationRelativeTo(null)). Layout: Membuat JPanel menggunakan GridLayout(3, 2, 10, 10) untuk menata label dan bidang input dalam grid 3 baris dan 2 kolom. Input: Menambahkan JLabel untuk "Username:" dan "Password:", diikuti oleh komponen tfUser dan pfPass. Tombol: Membuat JButton "Login". Listener Aksi: Menambahkan ActionListener pada tombol "Login" yang berisi seluruh logika otentikasi dan navigasi
 
@@ -51,18 +51,18 @@ Kelas ini memungkinkan kasir untuk membuat dan memproses pesanan pelanggan secar
     Menghitung subtotal dan grand total pesanan secara dinamis,
     Menyelesaikan transaksi dan menghasilkan struk pembayaran.
 
-1. public POSGUI()
+1. `public POSGUI()`
 
     Pengaturan Jendela: Menentukan judul, ukuran, dan layout (BorderLayout). Pemuatan Data: Memuat semua Menu dan Topping dari persistence layer melalui MenuService.loadAll() dan ToppingService.loadAll(). Membangun GUI: Memanggil buildUI() untuk merakit semua komponen.
 
-2. private void buildUI()
+2. `private void buildUI()`
    
    Metode ini merakit semua komponen antarmuka kasir. Header (NORTH): Membuat JPanel berisi cbMenu (ComboBox untuk Menu dengan custom renderer untuk menampilkan harga), wrapper untuk dropdown Topping, JSpinner (spQty) untuk kuantitas, dan tombol "Tambah ke Order" (btnAdd). Area Tengah (CENTER): Membuat JTable menggunakan orderTableModel untuk menampilkan detail pesanan yang sedang berlangsung (Nama, Topping, Qty, Harga, Subtotal). Footer (SOUTH): Membuat JPanel yang berisi lblTotal (menampilkan total harga pesanan) dan tombol "Bayar" (btnPay). Listener: Memasang listener pada btnAdd (addOrderItem()) dan btnPay (payOrder()).
 
 ## ReceiptWindow
 Kelas ReceiptWindow adalah class Graphical User Interface (GUI) yang sangat sederhana, berfungsi sebagai jendela pop-up khusus untuk menampilkan struk pembayaran (receipt) setelah transaksi selesai di POSGUI.
 
-1. public ReceiptWindow(String receipt)
+1. `public ReceiptWindow(String receipt)`
 
    Metode ini adalah titik awal inisialisasi dan pembangunan jendela struk. Input: Menerima satu parameter string, yaitu receipt, yang merupakan seluruh konten teks struk yang telah diformat (misalnya, yang dibuat oleh POSGUI.payOrder()). Pengaturan Jendela: Menetapkan judul jendela menjadi "Receipt", ukuran (400x500), dan memposisikannya di tengah layar. Area Teks: Membuat JTextArea baru (ta) dan mengisinya dengan string receipt. Formatting: Mengatur ta.setEditable(false) agar konten tidak dapat diubah, dan menetapkan font menjadi Monospaced untuk memastikan alignment teks dan tabel dalam struk tetap terjaga. Tampilan: Menambahkan JTextArea ke dalam JScrollPane (untuk memungkinkan scrolling jika struk panjang) sebelum menambahkannya ke JFrame.
 
